@@ -16,12 +16,11 @@ export function useFetchApi() {
         },
         redirect: "follow",
         referrerPolicy: "no-referrer",
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log("Success: ", data);
-          users.value = data.results;
-        });
+      });
+
+      const data = await response.json();
+      users.value = data.results;
+        
     } catch (error) {
       console.log(error);
     }

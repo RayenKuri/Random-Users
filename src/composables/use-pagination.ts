@@ -30,7 +30,6 @@ export function usePagination() {
   const displayUsersByGender = computed(() => {
     const firstIndex = first.value;
     const lastIndex = first.value + rows.value;
-
     return users.value
       .filter((user) =>
         user.gender.toLowerCase().startsWith(selectedGender.value.toLowerCase())
@@ -69,9 +68,12 @@ export function usePagination() {
 
   const viewUserDetails = computed(() => {
     return users.value.filter((user) =>
-      user.login.uuid.includes(uuid.value)
-    )[0];
+      user.login.uuid.includes(uuid.value))[0]
   });
+
+  const displayName = computed(() => {
+    return users.value.map((user) => viewUserDetails.value.name.first + ' ' +viewUserDetails.value.name.last)
+  })
 
   return {
     totalUsers,
@@ -86,5 +88,6 @@ export function usePagination() {
     isSearchBarEmpty,
     viewUserDetails,
     uuid,
+    displayName
   };
 }
