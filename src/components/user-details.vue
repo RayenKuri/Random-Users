@@ -3,7 +3,7 @@ import { usePagination } from "@/composables/use-pagination";
 import useUserDetails from "@/composables/use-user-details";
 import { useRoute } from "vue-router";
 
-const { viewUserDetails, uuid } = usePagination();
+const { viewUserDetails, uuid, displayName} = usePagination();
 
 const {
   isLoading,
@@ -31,7 +31,8 @@ uuid.value = id.toString();
       </div>
       <div class="info-holder">
         <h3 v-show="!isLoading">
-          {{ viewUserDetails.name.first }} {{ viewUserDetails.name.last }}
+          {{ displayName[0] }}
+          <!-- TODO: Create Computed -->
         </h3>
         <h3>{{ userDetails }}</h3>
       </div>
